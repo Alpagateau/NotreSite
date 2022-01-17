@@ -1,6 +1,17 @@
-button{
-    color: red;
+
+
+body
+{
+    background-color: #1c87c9;
+    
 }
-button{
+
+p
+{
+    color: rgb(0, 255, 13);
+    
+}
+body
+{
     color: blueviolet;
 }
