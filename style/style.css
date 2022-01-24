@@ -2,16 +2,70 @@
 
 body
 {
-    background-color: #1c87c9;
+    background-color: #ffffff;
     
 }
 
-p
+.green
 {
-    color: rgb(0, 255, 13);
+    color: rgb(102, 255, 0);
     
 }
-body
+
+
+.phrase
 {
     color: blueviolet;
+}
+
+.avertissement
+{
+    color: cornsilk;
+}
+body {
+    width: 500px;
+    margin: 0 auto;
+  }
+  
+  p {
+    background: rgba(4, 0, 255, 0.849);
+    border: 3px solid blue;
+    padding: 10px;
+    margin: 10px;
+  }
+  
+  span {
+    background: red;
+    border: 1px solid black;
+  }
+  
+  .positioned {
+    position: absolute;
+    background: yellow;
+    top: 30px;
+    left: 30px;
+  }
+  #deux {
+    position: relative;
+    top: 200px;
+    left: -0px;
+ }
+ .box {
+     color: rgb(146, 146, 146);
+ }
+.brown {
+    color:rgba(212, 100, 36, 0.829)
+}
+#un {
+    position: relative;
+    font-size: 50px;
+    left: -450px;
+    top: 50px;
+    width: 200%;
+}
+#trois {
+        position: relative;
+        font-size: 50px;
+        right: -450px;
+        bottom: -100px;
 }
