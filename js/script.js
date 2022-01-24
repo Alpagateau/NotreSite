@@ -17,7 +17,19 @@ function ajaxGet(url, callback) {
 
 function getJoke(){
     ajaxGet("https://v2.jokeapi.dev/joke/Any?lang=fr&blacklistFlags=nsfw&type=twopart", function (reponse) {
-        var joke = JSON.parse(reponse);
+        let joke = JSON.parse(reponse);
         // Ajout de la description et du logo dans la page web
+        console.log(joke)
+        let a = [joke.setup, joke.delivery]
+        console.log(a)
+
+        
+        setu = document.getElementById("setup")
+        deli = document.getElementById("delivery")
+
+        setu.innerHTML = a[0]
+        deli.innerHTML = a[1]
     });
 }
+
+getJoke()
