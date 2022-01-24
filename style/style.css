@@ -30,8 +30,9 @@ body {
   p {
     background: rgba(4, 0, 255, 0.849);
     border: 3px solid blue;
-    padding: 10px;
+    padding: 100px;
     margin: 10px;
+    font-size: 50px;
   }
   
   span {
@@ -68,4 +69,12 @@ body {
         font-size: 50px;
         right: -450px;
         bottom: -100px;
+}
+.enzo
+{
+  background-color: rgb(43, 101, 226);
+}
+.imp {
+  position: relative;
+  right: -120px;
 }
