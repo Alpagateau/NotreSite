@@ -61,4 +61,11 @@ body {
     font-size: 50px;
     left: -450px;
     top: 50px;
+    width: 200%;
+}
+#trois {
+        position: relative;
+        font-size: 50px;
+        right: -450px;
+        bottom: -100px;
 }
