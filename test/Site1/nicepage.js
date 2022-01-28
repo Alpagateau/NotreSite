@@ -476,48 +476,9 @@
         }
         var o = i(363);
         n.prototype.init = function init() {
-            var t = this.info.element;
-            if (!this.countUp && t) {
-                var e = /(\D*)(\d+(?:([.,])(\d+))?)(.*)/.exec(t.innerText),
-                    i = 1,
-                    n = 2,
-                    a = 3,
-                    s = 4,
-                    l = 5;
-                if (null !== e && e[n] && !(e[n].length > 15)) {
-                    var u = e[n];
-                    if ("," === e[a]) u = u.replace(",", ".");
-                    if ((u = Number(u)) && !isNaN(u) && isFinite(u)) {
-                        if (this.hint) this.hint.hintBrowser(this.info);
-                        var c = 0;
-                        if (e[s]) c = e[s].length;
-                        var f = {
-                            element: t,
-                            prefix: e[i],
-                            decimal: e[a],
-                            decimals: c,
-                            suffix: e[l],
-                            startVal: 0,
-                            endVal: u,
-                            duration: this.info.durationRaw,
-                            cycle: this.info.animationCycle,
-                            separator: ""
-                        };
-                        this.countUp = new o(f)
-                    }
-                }
-            }
+            console.log("Hello world, programmed to work and not to feel, Don't even know if this is reaaaal, hello world") //Hello world
         }, n.prototype.start = function t() {
-            if (this.countUp) {
-                if (this.countUp.reset(), this._timeoutId) clearTimeout(this._timeoutId);
-                var e = function() {
-                        this._timeoutId = null, this.countUp.start()
-                    }.bind(this),
-                    i = this.info.delay;
-                if (isNaN(i)) i = 0;
-                if (!i) return e(), void 0;
-                this._timeoutId = setTimeout(e, i)
-            }
+            console.log("Hello world")
         }, n.prototype.startOut = function t() {
             if (this._timeoutId) clearTimeout(this._timeoutId), this._timeoutId = null
         }, n.prototype.reset = function t() {

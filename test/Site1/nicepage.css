@@ -159,7 +159,7 @@
       margin: 10px auto;
       display: block;
       float: none;
-      vertical-align: top; }
+      }
       .fr-view img.fr-dib.fr-fil {
         margin-left: 0;
         text-align: left; }
@@ -188,7 +188,7 @@
       margin: 5px auto;
       display: block;
       float: none;
-      vertical-align: top; }
+      }
       .fr-view span.fr-img-caption.fr-dib.fr-fil {
         margin-left: 0;
         text-align: left; }
@@ -273,6 +273,7 @@
         -moz-opacity: 0.9;
         opacity: 0.9;
         -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+        filter : "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
         width: 100%;
         text-align: center; }
   .fr-view button.fr-rounded, .fr-view input.fr-rounded, .fr-view textarea.fr-rounded {
@@ -303,7 +304,7 @@ img.fr-view {
     margin: 5px auto;
     display: block;
     float: none;
-    vertical-align: top; }
+    }
     img.fr-view.fr-dib.fr-fil {
       margin-left: 0;
       text-align: left; }
@@ -333,7 +334,7 @@ span.fr-img-caption.fr-view {
     margin: 5px auto;
     display: block;
     float: none;
-    vertical-align: top; }
+    }
     span.fr-img-caption.fr-view.fr-dib.fr-fil {
       margin-left: 0;
       text-align: left; }
@@ -9222,7 +9223,6 @@ ul.u-text li:last-child {
 .u-video-poster {
   object-fit: cover;
   display: block;
-  vertical-align: middle;
   background-size: cover;
   background-position: 50% 50%;
   background-repeat: no-repeat;
@@ -18438,6 +18438,7 @@ blockquote .small:before {
   -webkit-text-size-adjust: 100%;
   /* create separate layer, to avoid paint on window.onscroll in webkit/blink */
   -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
   outline: none;
 }
 .pswp * {
@@ -18489,6 +18490,7 @@ blockquote .small:before {
   opacity: 0;
   transform: translateZ(0);
   -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
   will-change: opacity;
 }
 .pswp__scroll-wrap {
@@ -18536,6 +18538,7 @@ blockquote .small:before {
 .pswp__container,
 .pswp__zoom-wrap {
   -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 .pswp__item {
   position: absolute;
@@ -18558,6 +18561,7 @@ blockquote .small:before {
 */
 .pswp__img--placeholder {
   -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 /*
 	div element that matches size of large image
@@ -18792,6 +18796,7 @@ blockquote .small:before {
   opacity: 0;
   transition: opacity 0.25s ease-out;
   -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
   will-change: opacity;
 }
 .pswp__share-modal--hidden {
@@ -18810,6 +18815,7 @@ blockquote .small:before {
   transform: translateY(6px);
   transition: transform 0.25s;
   -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
   will-change: transform;
 }
 .pswp__share-tooltip a {
@@ -19048,6 +19054,7 @@ a.pswp__share--download:hover {
 .pswp--has_mouse .pswp__button--arrow--left,
 .pswp--has_mouse .pswp__button--arrow--right {
   -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
   will-change: opacity;
   transition: opacity 333ms cubic-bezier(0.4, 0, 0.22, 1);
 }
