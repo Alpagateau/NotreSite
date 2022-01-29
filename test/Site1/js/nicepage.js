@@ -15,33 +15,7 @@
         return Object.prototype.hasOwnProperty.call(t, e)
     }, e.p = "/Content/BundledScripts/", e(e.s = 7291)
 }({
-    119: function(t, e, i) {
-        "use strict";
 
-        function Dialog(t) {
-            this._openClass = "u-dialog-open", this._dialogBlockClass = "u-dialog-block", this._dialogBlockSelector = "." + this._dialogBlockClass, this._dialog = t.closest(this._dialogBlockSelector)
-        }
-
-        function n(t) {
-            if (!window._responsive) return false;
-            var e = t.find(".u-dialog"),
-                i = window._responsive.mode || "XL";
-            return e.is(".u-hidden, .u-hidden-" + i.toLowerCase())
-        }
-        t.exports = Dialog, Dialog.prototype.open = function(t) {
-            this._dialog.each(function(e, block) {
-                var i = $(block);
-                if (!n(i)) {
-                    if (i.addClass(this._openClass), "function" == typeof t) t(i);
-                    i.trigger("opened.np.dialog", [this])
-                }
-            }.bind(this))
-        }, Dialog.prototype.close = function() {
-            this._dialog.removeClass(this._openClass), this._dialog.trigger("closed.np.dialog", [this])
-        }, Dialog.prototype.getInterval = function() {
-            return this._dialog.attr("data-dialog-show-interval") || 3e3
-        }
-    },
     13: function(t, e, i) {
         "use strict";
     },
@@ -3818,17 +3792,6 @@
         (function() {
             ! function() {
                 "use strict";
-
-                function t(n) {
-                    if (!n) throw new Error("No options passed to Waypoint constructor");
-                    if (!n.element) throw new Error("No element option passed to Waypoint constructor");
-                    if (!n.handler) throw new Error("No handler option passed to Waypoint constructor");
-                    if (this.key = "waypoint-" + e, this.options = t.Adapter.extend({}, t.defaults, n), this.element = this.options.element, this.adapter = new t.Adapter(this.element), this.callback = n.handler, this.axis = this.options.horizontal ? "horizontal" : "vertical", this.enabled = this.options.enabled, this.triggerPoint = null, this.group = t.Group.findOrCreate({
-                            name: this.options.group,
-                            axis: this.axis
-                        }), this.context = t.Context.findOrCreateByElement(this.options.context), t.offsetAliases[this.options.offset]) this.options.offset = t.offsetAliases[this.options.offset];
-                    this.group.add(this), this.context.add(this), i[this.key] = this, e += 1
-                }
                 var e = 0,
                     i = {};
                 t.prototype.queueTrigger = function(t) {
@@ -3881,29 +3844,12 @@
             }(),
             function() {
                 "use strict";
-
-                function t(t) {
-                    window.setTimeout(t, 1e3 / 60)
-                }
-
-                function e(t) {
-                    if (this.element = t, this.Adapter = o.Adapter, this.adapter = new this.Adapter(t), this.key = "waypoint-context-" + i, this.didScroll = false, this.didResize = false, this.oldScroll = {
-                            x: this.adapter.scrollLeft(),
-                            y: this.adapter.scrollTop()
-                        }, this.waypoints = {
-                            vertical: {},
-                            horizontal: {}
-                        }, t.waypointContextKey = this.key, n[t.waypointContextKey] = this, i += 1, !o.windowContext) o.windowContext = true, o.windowContext = new e(window);
-                    this.createThrottledScrollHandler(), this.createThrottledResizeHandler()
-                }
                 var i = 0,
                     n = {},
                     o = window.Waypoint,
                     a = window.onload;
-                e.prototype.add = function(t) {
-                    var e = t.options.horizontal ? "horizontal" : "vertical";
-                    this.waypoints[e][t.key] = t, this.refresh()
-                }, e.prototype.checkEmpty = function() {
+                    
+                    e.prototype.checkEmpty = function() {
                     var t = this.Adapter.isEmptyObject(this.waypoints.horizontal),
                         e = this.Adapter.isEmptyObject(this.waypoints.vertical),
                         i = this.element == this.element.window;
@@ -4369,92 +4315,6 @@
     },
     7318: function(t, e, i) {
         "use strict";
-
-        function Animation() {
-            this.animationElements = null, this.animationEvents = [], this._section = null, this._sliderNode = null, this._slideNumber = null, this._slideEvent = null, this._animationInfo = null, this._animation = null, this._subscribeQueue = [], this.status = "loading", this._onDOMContentLoaded = this._onDOMContentLoaded.bind(this), this._onLoadingComplete = this._onLoadingComplete.bind(this)
-        }
-
-        function n(t) {
-            var e = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
-            if (!e) return t(), void 0;
-            e.apply(window, arguments)
-        }
-
-        function o(t) {
-            return "string" == typeof t.name && -1 !== m.indexOf(t.name.toLowerCase())
-        }
-
-        function a(t) {
-            return "string" == typeof t.direction && -1 !== v.indexOf(t.direction.toLowerCase())
-        }
-
-        function s(section, t) {
-            if (t && t.length)
-                if (l())
-                    for (var e = 0; e < t.length; e++)
-                        if (a(t[e]) || o(t[e])) {
-                            section.style.overflow = "hidden";
-                            break
-                        }
-        }
-
-        function l() {
-            return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent || navigator.vendor || window.opera)
-        }
-        var u = i(168),
-            c = i(361),
-            f = i(7319),
-            p = i(7320),
-            h = i(7321);
-        Animation.prototype.init = function init() {
-            if ("loading" !== document.readyState) return this._onDOMContentLoaded(), void 0;
-            else return document.addEventListener("DOMContentLoaded", this._onDOMContentLoaded), this
-        }, Animation.prototype.start = function t() {
-            var e = this._subscribeQueue;
-            n((function() {
-                e.forEach((function(el) {
-                    if (el.event && el.animation) el.event.subscribe(el.animation)
-                })), e.length = 0
-            }))
-        }, Animation.prototype.visitSection = function t(e) {
-            if (e.classList.contains("u-carousel")) return this.visitSlider(e), void 0;
-            this._section = e, this._visitElementsInContentSlider(e), this._visitElementsNotInSlider(e), this._section = null
-        }, Animation.prototype._visitElementsInContentSlider = function(t) {
-            for (var e = t.querySelectorAll(".u-carousel"), i = 0; i < e.length; i++) this.visitSlider(e[i])
-        }, Animation.prototype._visitElementsNotInSlider = function(t) {
-            for (var e = [], i = t.querySelectorAll("[data-animation-name]"), o = 0; o < i.length; o++) {
-                var a = i[o];
-                if (a.closest && null === a.closest(".u-carousel") && a.getAttribute("data-animation-name")) this.visitAnimatedElement(a), e.push(this._animationInfo), this._subscribeQueue.push({
-                    animation: this._animation,
-                    event: f
-                }), n(this._animation.init.bind(this._animation))
-            }
-            s(t, e)
-        }, Animation.prototype.visitSlider = function t(e) {
-            this._sliderNode = e;
-            for (var i = e.querySelectorAll(".u-carousel-item"), n = 0; n < i.length; n++) this._slideNumber = n, this.visitSlide(i[n])
-        }, Animation.prototype.visitSlide = function t(e) {
-            var i = e.querySelectorAll("[data-animation-name]"),
-                n = [];
-            this._slideEvent = new p(this._sliderNode, e, this._slideNumber);
-            for (var o = 0; o < i.length; o++)
-                if (i[o].getAttribute("data-animation-name")) this.visitAnimatedElement(i[o]), n.push(this._animationInfo), this._animation.init(), this._slideEvent.animations.push(this._animation);
-            this._slideEvent.init(), s(e, n)
-        }, Animation.prototype.visitAnimatedElement = function t(e) {
-            this._animationInfo = new u(e, this._section), this._animation = c.createAnimation(this._animationInfo), this.animationElements.push(this._animation)
-        }, Animation.prototype._onDOMContentLoaded = function() {
-            if (this.status = "DOMContentLoaded", document.removeEventListener("DOMContentLoaded", this._onDOMContentLoaded), !this.animationElements) {
-                this.animationElements = [], c.setHint(h);
-                var sections = $("section, header, footer"),
-                    length = sections.length;
-                if (sections.each(function(index, t) {
-                        if (this.visitSection(t), !--length) c.setHint(null)
-                    }.bind(this)), "interactive" !== document.readyState) return this._onLoadingComplete(), void 0;
-                window.addEventListener("load", this._onLoadingComplete)
-            }
-        }, Animation.prototype._onLoadingComplete = function() {
-            this.status = "complete", window.removeEventListener("load", this._onLoadingComplete), this.start()
-        };
         var m = ["lightspeedin", "flipin", "flipout"],
             v = ["right", "downright", "upright"];
         t.exports = Animation, window.Animation = Animation
