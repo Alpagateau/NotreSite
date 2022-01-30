@@ -15681,7 +15681,7 @@ div.u-video,
 }
 .u-nav-item {
   display: inline-block;
-  position: relative;
+  /*position: relative;*/
   vertical-align: middle;
   padding: 0;
   margin: 0;
@@ -36051,7 +36051,7 @@ a.u-link.u-text-hover-grey-90:hover {
 .u-header .u-image-1 {
   width: 66px;
   height: 66px;
-  background-image: url("images/vrailogo1.png");
+  background-image: url("../images/vrailogo1.png");
   background-position: 50% 50%;
   margin: 14px auto 0 -66px;
 }
@@ -36120,6 +36120,6 @@ a.u-link.u-text-hover-grey-90:hover {
   }
 }
 
- /*begin-variables base-font-size*/ 
+ /*begin-variables base-font-size*/
  html { font-size: 16px; }
  /*end-variables base-font-size*/

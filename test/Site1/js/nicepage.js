@@ -548,6 +548,7 @@
             }
         }, window.MapsLoader = MapsLoader
     },
+    //Working here
     527: function(t, e, i) {
         "use strict";
 
@@ -559,190 +560,6 @@
         ResponsiveMenu.prototype.init = function init() {
             if (this.root.is("body")) this.subscribe();
             this.initStyles()
-        }, ResponsiveMenu.prototype.subscribe = function t() {
-            this.root.on("click", ".u-menu .menu-collapse", function(t) {
-                t.preventDefault();
-                var e = n(t.currentTarget).closest(".u-menu");
-                if (ResponsiveMenu.isActive(e)) this.close(e);
-                else this.open(e)
-            }.bind(this)), this.root.on("click", ".u-menu .u-menu-close", function(t) {
-                t.preventDefault();
-                var e = n(t.currentTarget).closest(".u-menu");
-                this.close(e)
-            }.bind(this)), this.root.on("click", ".u-menu .u-menu-overlay", function(t) {
-                var e = n(t.currentTarget).closest(".u-menu.open");
-                this.close(e)
-            }.bind(this)), this.root.find(".u-menu").on("click", ".u-nav-container-collapse .u-nav-link", function(t) {
-                var e = n(t.currentTarget),
-                    popup;
-                if (!e.siblings(".u-nav-popup").length) {
-                    var i = e.attr("href");
-                    if (i && -1 !== i.indexOf("#")) {
-                        var o = n(t.currentTarget).closest(".u-menu");
-                        this.close(o)
-                    }
-                }
-            }.bind(this)), this.root.find(".u-menu:not(.u-menu-one-level)").on("click", ".u-nav-container-collapse .u-nav-link", (function(t) {
-                var popup = n(t.currentTarget).siblings(".u-nav-popup"),
-                    nav, e = popup.closest(".u-menu").attr("data-submenu-level") || "on-click";
-                if (popup.length && "on-click" === e) {
-                    t.preventDefault(), t.stopPropagation(), t.returnValue = false, popup.one("transitionend webkitTransitionEnd oTransitionEnd", (function(t) {
-                        t.stopPropagation(), popup.removeClass("animating"), popup.toggleClass("open"), popup.css({
-                            "max-height": popup.is(".open") ? "none" : "",
-                            visibility: ""
-                        }), popup.find(".open").removeClass("open").css("max-height", "")
-                    })), popup.css({
-                        "max-height": "none",
-                        visibility: "visible"
-                    });
-                    var i = popup.outerHeight();
-                    popup.css("max-height", popup.is(".open") ? i : 0), popup.addClass("animating"), popup[0].offsetHeight, popup.css("max-height", popup.is(".open") ? 0 : i)
-                }
-            })), n(window).on("resize", function() {
-                n(".u-menu.open").each(function(t, el) {
-                    this.close(n(el))
-                }.bind(this))
-            }.bind(this)), n(document).keyup(function(t) {
-                if (27 === t.keyCode) n(".u-menu.open").each(function(t, el) {
-                    this.close(n(el))
-                }.bind(this))
-            }.bind(this)), ResponsiveMenu.fixDirection()
-        }, ResponsiveMenu.prototype.initStyles = function t() {
-            this.root.find(".u-menu").each((function() {
-                var menu = n(this),
-                    style = menu.find(".offcanvas-style"),
-                    t = menu.find(".u-nav-container-collapse .u-sidenav").attr("data-offcanvas-width") || 250;
-                if (!style.length) style = n('<style class="offcanvas-style"></style>'), menu.append(style);
-                style.html("            .u-offcanvas .u-sidenav { flex-basis: {width} !important; }            .u-offcanvas:not(.u-menu-open-right) .u-sidenav { margin-left: -{width}; }            .u-offcanvas.u-menu-open-right .u-sidenav { margin-right: -{width}; }            @keyframes menu-shift-left    { from { left: 0;        } to { left: {width};  } }            @keyframes menu-unshift-left  { from { left: {width};  } to { left: 0;        } }            @keyframes menu-shift-right   { from { right: 0;       } to { right: {width}; } }            @keyframes menu-unshift-right { from { right: {width}; } to { right: 0;       } }            ".replace(/\{width\}/g, t + "px"))
-            }))
-        }, ResponsiveMenu.prototype.onResponsiveResize = function t() {
-            n(".u-menu").each(function(t, el) {
-                var e = n(el).attr("data-responsive-from") || "MD",
-                    i = this.responsive.modes.indexOf(e),
-                    o = this.responsive.modes.slice(i);
-                ResponsiveMenu.toggleResponsive(el, -1 !== o.indexOf(this.responsive.mode)), this.megaResize(el, 1), this.megaColumns(el, this.responsive.mode)
-            }.bind(this))
-        }, ResponsiveMenu.toggleResponsive = function t(e, i) {
-            n(e).toggleClass("u-enable-responsive", i)
-        }, ResponsiveMenu.prototype.close = function close(menu, t) {
-            if (!window.app || !window.app.modes) {
-                if (ResponsiveMenu.isActive(menu)) this.closeMenu(menu, t)
-            } else if (this.closeMenu(menu, t), this.setOverlayOpacity(menu), ResponsiveMenu.isOffcanvasMode(menu)) app.modes().resetOffCanvas()
-        }, ResponsiveMenu.prototype.closeMenu = function t(menu, e) {
-            if (this.enableScroll(), ResponsiveMenu.isOffcanvasMode(menu)) this.offcanvasMenuClose(menu);
-            else this.overlayMenuClose(menu);
-            this.root.removeClass("menu-overlay"), this.hideOverlay(menu, e)
-        }, ResponsiveMenu.prototype.open = function open(menu) {
-            if (this.root.addClass("menu-overlay"), !window.app || !window.app.modes) {
-                if (!ResponsiveMenu.isActive(menu)) this.openMenu(menu)
-            } else if (this.setOverlayOpacity(menu), this.openMenu(menu), ResponsiveMenu.isOffcanvasMode(menu)) app.modes().setOffCanvas()
-        }, ResponsiveMenu.prototype.setOverlayOpacity = function t(menu) {
-            menu.find(".u-menu-overlay").css("opacity", "")
-        }, ResponsiveMenu.prototype.openMenu = function open(menu) {
-            if (this.disableScroll(), ResponsiveMenu.isOffcanvasMode(menu)) this.offcanvasMenuOpen(menu);
-            else this.overlayMenuOpen(menu);
-            this.showOverlay(menu)
-        }, ResponsiveMenu.prototype.offcanvasMenuOpen = function t(menu) {
-            var e = this.root;
-            if (menu.addClass("open"), e.addClass("u-offcanvas-opened"), menu.is(".u-offcanvas-shift")) e.addClass("u-offcanvas-shifted-" + (menu.hasClass("u-menu-open-right") ? "right" : "left"))
-        }, ResponsiveMenu.prototype.offcanvasMenuClose = function t(menu) {
-            if (menu.removeClass("open"), this.root.removeClass("u-offcanvas-opened u-offcanvas-shifted-left u-offcanvas-shifted-right"), menu.is(".u-offcanvas-shift")) this.root.addClass("u-offcanvas-unshifted-" + (menu.hasClass("u-menu-open-right") ? "right" : "left"))
-        }, ResponsiveMenu.prototype.megaColumns = function t(menu, e) {
-            if ((menu = n(menu)).hasClass("u-menu-mega")) menu.find(".u-mega-popup .u-popupmenu-items").each(function(index, t) {
-                t = n(t);
-                var i = this.getColumnSize(t.parent(), e),
-                    o = t.children().toArray().reduce((function(t, e) {
-                        var i = Math.ceil(n(e).outerHeight(true));
-                        if (t.total += i, t.list.push(i), i > t.max) t.max = i;
-                        return t
-                    }), {
-                        list: [],
-                        total: 0,
-                        max: 0
-                    }),
-                    a = Math.ceil(Math.max(o.total / i, o.max)),
-                    s, l = 0,
-                    u = 4;
-                do {
-                    s = [0];
-                    for (var c = 0; c < o.list.length; c++) {
-                        var f = s[s.length - 1],
-                            p = o.list[c];
-                        if (a - f - u >= p) f += p, s[s.length - 1] = f;
-                        else s.push(p)
-                    }
-                    if (s.length <= i) break;
-                    a += 20
-                } while (l++ < 100);
-                t.css("height", a + "px")
-            }.bind(this))
-        }, ResponsiveMenu.prototype.getColumnSize = function t(el, e) {
-            var i = el.attr("class") || "",
-                n;
-            if (e = e || this.responsive && this.responsive.mode || "no-value", n = new RegExp("u-columns-(\\d+)-" + e.toLowerCase()).exec(i)) return parseFloat(n[1]) || 1;
-            if (n = new RegExp("u-columns-(\\d+)([^-]|$)").exec(i)) return parseFloat(n[1]) || 1;
-            else return 1
-        }, ResponsiveMenu.prototype.megaResize = function t(menu, e) {
-            if (menu = n(menu), e = e || 1, menu.hasClass("u-menu-mega")) menu.outerHeight(), menu.each((function() {
-                var menu = n(this),
-                    t = menu.closest(".u-sheet, .u-body"),
-                    i = t.offset(),
-                    o = t.outerWidth();
-                menu.find(".u-mega-popup").each((function() {
-                    var popup = n(this);
-                    popup.css({
-                        left: "",
-                        width: ""
-                    }), popup.outerHeight();
-                    var t = popup.offset(),
-                        a = (i.left - t.left) / e;
-                    popup.css({
-                        left: Math.round(a) + "px",
-                        width: o + "px"
-                    })
-                }))
-            }))
-        }, ResponsiveMenu.prototype.hideOverlay = function t(menu, e) {
-            var overlay = menu.find(".u-menu-overlay"),
-                i = function() {
-                    if (!ResponsiveMenu.isActive(menu)) menu.find(".u-nav-container-collapse").css("width", ""), this.root.filter("body").find("header.u-sticky").css("top", "")
-                }.bind(this);
-            if (e) i();
-            else overlay.fadeOut(500, i)
-        }, ResponsiveMenu.prototype.showOverlay = function t(menu) {
-            var overlay = menu.find(".u-menu-overlay");
-            menu.find(".u-nav-container-collapse").css("width", "100%"), overlay.fadeIn(500)
-        }, ResponsiveMenu.prototype.disableScroll = function t() {
-            if (this.root.is("body")) document.documentElement.style.overflow = "hidden"
-        }, ResponsiveMenu.prototype.enableScroll = function t() {
-            if (this.root.is("body")) document.documentElement.style.overflow = ""
-        }, ResponsiveMenu.prototype.overlayMenuOpen = function t(menu) {
-            menu.addClass("open")
-        }, ResponsiveMenu.prototype.overlayMenuClose = function t(menu) {
-            menu.removeClass("open")
-        }, ResponsiveMenu.isOffcanvasMode = function(menu) {
-            return menu.is(".u-offcanvas")
-        }, ResponsiveMenu.isActive = function(menu) {
-            return menu.hasClass("open")
-        }, ResponsiveMenu.fixDirection = function t() {
-            n(document).on("mouseenter touchstart", ".u-nav-container ul > li", (function t() {
-                var e = "u-popup-left",
-                    i = "u-popup-right",
-                    popup = n(this).children(".u-nav-popup");
-                if (popup.length) {
-                    popup.removeClass(e + " " + i);
-                    var o = "";
-                    if (popup.parents("." + e).length) o = e;
-                    else if (popup.parents("." + i).length) o = i;
-                    if (o) popup.addClass(o);
-                    else {
-                        var a = popup.offset().left,
-                            s = popup.outerWidth();
-                        if (a < 0) popup.addClass(i);
-                        else if (a + s > n(window).width()) popup.addClass(e)
-                    }
-                }
-            }))
         }, window.ResponsiveMenu = ResponsiveMenu
     },
     6: function(t, e) {
@@ -4277,19 +4094,19 @@
             }))
         })), window._npInitMenuLink = function t(e, i) {
             var o = n("body"),
-                a = /#.*?$/,
-                s = o.attr("data-home-page-name"),
-                l = o.attr("data-home-page"),
+                regexSym = /#.*?$/,
+                attr1 = o.attr("data-home-page-name"),
+                attr2 = o.attr("data-home-page"),
                 pageTitle = n("title").text().trim(),
                 nav, u = e.closest(".u-menu").attr("data-submenu-level") || "on-click",
                 c = e.attr("href") || "",
-                f = (e[0].href || "").replace(a, ""),
-                p = c.replace(a, ""),
-                h = s || pageTitle,
+                f = (e[0].href || "").replace(regexSym, ""),
+                p = c.replace(regexSym, ""),
+                h = attr1 || pageTitle,
                 m = e.text().trim(),
-                v = c.replace(/^[^#]+/, "");
-            if (!v || "#" === v || !n(v).length)
-                if (p && window.location.href.toString() === f || m && h === m || l && p === l) {
+                lastReplace = c.replace(/^[^#]+/, "");
+            if (!lastReplace || "#" === lastReplace || !n(lastReplace).length)
+                if (p && window.location.href.toString() === f || m && h === m || attr2 && p === attr2) {
                     var g = e.parents(".u-nav-item").children(".u-nav-link");
                     if (g.addClass("active"), "with-reload" === u && i) g.siblings(".u-nav-popup").addClass("open").css("max-height", "none")
                 }
