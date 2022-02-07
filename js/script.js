@@ -1,35 +1,28 @@
-function ajaxGet(url, callback) {
-    var req = new XMLHttpRequest();
-    req.open("GET", url);
-    req.addEventListener("load", function () {
-        if (req.status >= 200 && req.status < 400) {
-            // Appelle la fonction callback en lui passant la réponse de la requête
-            callback(req.responseText);
-        } else {
-            console.error(req.status + " " + req.statusText + " " + url);
-        }
-    });
-    req.addEventListener("error", function () {
-        console.error("Erreur réseau avec l'URL " + url);
-    });
-    req.send(null);
+var slideIndex = 1;
+showSlides(slideIndex);
+
+//this moves the pointer on the left
+function plusSlides(n) {
+  showSlides(slideIndex += n);
 }
 
-function getJoke(){
-    ajaxGet("https://v2.jokeapi.dev/joke/Any?lang=fr&blacklistFlags=nsfw&type=twopart", function (reponse) {
-        let joke = JSON.parse(reponse);
-        // Ajout de la description et du logo dans la page web
-        console.log(joke)
-        let a = [joke.setup, joke.delivery]
-        console.log(a)
-
-        
-        setu = document.getElementById("setup")
-        deli = document.getElementById("delivery")
-
-        setu.innerHTML = a[0]
-        deli.innerHTML = a[1]
-    });
+//this moves the pointer right
+function currentSlide(n) {
+  showSlides(slideIndex = n);
 }
 
-getJoke()
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}
+    if (n < 1) {slideIndex = slides.length}
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+    for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+    }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+}
