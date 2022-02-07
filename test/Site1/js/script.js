@@ -4,6 +4,7 @@ showSlides(slideIndex);
 //this moves the pointer on the left
 function plusSlides(n) {
   showSlides(slideIndex += n);
+  console.log("J'ai cliqué")
 }
 
 //this moves the pointer right
