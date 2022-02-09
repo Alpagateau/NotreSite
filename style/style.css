@@ -9,7 +9,6 @@ body
 .green
 {
     color: rgb(102, 255, 0);
-    
 }
 
 
@@ -22,12 +21,12 @@ body
 {
     color: cornsilk;
 }
-body {
-    width: 500px;
-    margin: 0 auto;
-  }
+body{
+  width: 500px;
+  margin: 0 auto;
+}
   
-  p {
+ p {
     background: rgba(4, 0, 255, 0.849);
     border: 3px solid blue;
     padding: 100px;
@@ -46,30 +45,14 @@ body {
     top: 30px;
     left: 30px;
   }
-  #deux {
-    position: relative;
-    top: 200px;
-    left: -0px;
- }
- .box {
-     color: rgb(146, 146, 146);
- }
+  .box {
+    color: rgb(146, 146, 146);
+  }
+
 .brown {
-    color:rgba(212, 100, 36, 0.829)
+  color:rgba(212, 100, 36, 0.829)
 }
-#un {
-    position: relative;
-    font-size: 50px;
-    left: -450px;
-    top: 50px;
-    width: 200%;
-}
-#trois {
-        position: relative;
-        font-size: 50px;
-        right: -450px;
-        bottom: -100px;
-}
+
 .enzo
 {
   background-color: rgb(43, 101, 226);
@@ -77,4 +60,24 @@ body {
 .imp {
   position: relative;
   right: -120px;
+}
+#un {
+  position: relative;
+  font-size: 50px;
+  left: -450px;
+  top: 50px;
+  width: 200%;
+}
+#trois {
+  position: relative;
+  font-size: 50px;
+  right: -350px;
+  bottom: -200px;
+}
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 700;
+  width: 100%;
+  text-align: center;
 }
