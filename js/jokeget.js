@@ -16,7 +16,7 @@ function ajaxGet(url, callback) {
 }
 
 function getJoke(){
-    ajaxGet("https://v2.jokeapi.dev/joke/Any?lang=fr&blacklistFlags=nsfw&type=twopart", function (reponse) {
+    ajaxGet("https://v2.jokeapi.dev/joke/Any?lang=fr&blacklistFlags=nsfw,religious,political,racist,sexist,explicit", function (reponse) {
         let joke = JSON.parse(reponse);
         // Ajout de la description et du logo dans la page web
         console.log(joke)
